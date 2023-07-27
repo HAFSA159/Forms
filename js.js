@@ -1,47 +1,47 @@
-const form = document.getElementById('form');
-const Email = document.getElementById('Email');
-const Phone = document.getElementById('Phone');
-const text = document.getElementById('text');
-const date = document.getElementById('date');
+function submitForm() {
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
 
-    validateInputs();
-});
-
-const setError = (element, message) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('error');
-
-    errorDisplay.innertext = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success');
-}
+var Email = document.getElementById('Email').value;
+var Phone = document.getElementById('Phone').value;
+var text = document.getElementById('text').value;
+var date = document.getElementById('date').value;
     
-const validateInputs = () => {
-    const EmailValue = Email.value.trim();
-    const PhoneValue = Phone.value.trim();
-    const textValue = text.value.trim();
-    const dateValue = date.value.trim();
-
-    if(EmailValue == ''){
-       setError(Email, 'Email is required');
-    } else{
-        setSuccess(Email);
+    if (Email == "") {
+      document.getElementById("Error1").innerHTML="Enter your email";
     }
-    if(PhoneValue === ''){
-        setError(Phone, 'Phone is required');
-    } else if (!isValidPhone(PhoneValue)){
-        setError(Phone, 'Provide a valid Phone no.');
-    } else{
-        setSucess(Phone);
+      else { 
+        document.getElementById("Error1").innerHTML="";
     }
+    
+    if (Phone === "" || Phone.startsWith("+212")) {
+        document.getElementById("Error2").innerHTML="Enter your Phone No. (starting with +212)";
+      }
+      else { 
+          document.getElementById("Error2").innerHTML="";
+      }   
+      
+    if (text == "") {
+        document.getElementById("Error3").innerHTML="Enter your Message";
+      }
+      else { 
+          document.getElementById("Error3").innerHTML="";
+      }
 
-};
 
+      var datee = new Date(date);
+      var year= datee.getFullYear();
+      // console.log(year);
 
+      if (year < 1990 || year > 2023){
 
+        document.getElementById("Error4").innerHTML="the year should be between 2000 and 2023";
 
+      }
+      else{
+        document.getElementById("Error4").innerHTML="";
+      }
 
-
+        
+  
+       
+}
